@@ -1,0 +1,98 @@
+hr
+select tname from tab;
+TNAME
+--------------------------------------------------------------------------------
+REGIONS
+COUNTRIES
+LOCATIONS
+DEPARTMENTS
+JOBS
+EMPLOYEES
+JOB_HISTORY
+EMP_DETAILS_VIEW
+
+desc 테이블명;
+select * from nls_session_parameters;
+
+<함수>
+1. 이름이 'adam' 인 직원의 급여와 입사일을 조회하시오.
+이 때 이름은 대소문자 구분없이 비교하도록 합니다.
+select FIRST_NAME, SALARY, HIRE_DATE
+from employees
+where lower(first_name) = 'adam'
+where upper(first_name)=upper('adam')
+where first_name = initcap('adam')
+
+2. COUNTRIES 테이블에서 나라명이 'united states of america' 인 나라의 국가 코드를 조회하시오.
+이 때 나라명은 대소문자 구분없이 비교하도록 합니다.
+select  COUNTRY_NAME, country_id
+from  COUNTRIES
+where lower(COUNTRY_NAME) = 'united states of america'
+
+3. 'ADAM의 입사일은 2005년도11월02일 이고, 급여는 7,000 입니다.' 의 형식으로 직원정보를 조회하시오.
+select first_name || '의 입사일은 ' || to_char(hire_date, 'yyyy"년도"mm"월"dd"일"') || '이고, 급여는 ' || to_char(salary, '9,999') || '입니다.'
+from employees
+where upper(first_name) = 'ADAM'
+
+format masking : fm 불필요한 04 에서 4로 바꿔줌
+
+4. 이름이 5글자 이하인 직원들의 이름, 급여, 입사일을 조회하시오.
+select FIRST_NAME, SALARY, HIRE_DATE
+from employees
+WHERE length(trim(first_name)) <=5
+
+5. 함수를 사용하여 06년도에 입사한 직원의 이름, 입사일을 조회하시오
+select FIRST_NAME, HIRE_DATE
+from employees
+WHERE substr(HIRE_DATE,1,2) ='06'
+
+6. 20년 이상 장기 근속한 직원들의 이름, 입사일, 급여, 근무년차를 조회하시오.
+select FIRST_NAME, HIRE_DATE,salary,trunc((sysdate - hire_date)/365) 근무년차
+from employees
+WHERE trunc((sysdate - hire_date)/365) >=20;
+
+7. employees 테이블에서 직종이(job_id) 'st_clerk'인 사원 중에서 급여가 1500 이상인 사원의 first_name, job_id, salary, commission_pct 를 조회하되 
+커미션을 받지 못하는 사원은 '커미션없음' 을 출력하시오. 
+select first_name, job_id, salary, nvl(to_char(commission_pct),'커미션없음') 커미션
+from employees
+where lower(job_id) = 'st_clerk'
+and salary >= 1500
+
+
+8. employees 테이블에서 급여가 20000 이상인 직종(job_id)의 job_id, salary 조회하되 salary는 10자리로 출력하되 공백은 '0'으로 표시되도록 하시오.
+select job_id, lpad(salary,10,'0')
+from employees
+where salary >=20000;
+
+9. departments 테이블에서 manager_id는 부서장사번을 나타냅니다.
+부서명 부서장사번 으로 조회하되 부서장사번이 없는 부서는 '신생부서'로 출력되도록 조회하시오.
+select  DEPARTMENT_NAME 부서명, nvl(to_char(manager_id),'신생부서') 부서장사번
+from departments
+
+10. EMPLOYEES 테이블에서 SALARY컬럼은 월급이다.
+ JENNIFER(FIRST_NAME)  Dilly(LAST_NAME) 사원은 
+이번달 무급휴직으로 5일만 출근하였기에 5일간의 월급만 지급하려고 한다.
+단 소수점 미만은 반올림하여 없앤다.
+JENNIFER Dilly 의 월급을 조회하시오.
+성  이름  5일간의 월급
+select first_name 성, last_name 이름, round((salary / 30) *5, 0) "5일간의 월급"
+from EMPLOYEES 
+where upper(first_name) = 'JENNIFER'
+and initcap(LAST_NAME) = 'Dilly'
+
+11. 사원들의 전화번호를 조회하려고 한다. 모든 전화번호 뒷자리 4자리는 * 표 처리하여 조회하시오.
+010.1234.****
+02.123.****
+select phone_number 원래전화번호, rpad(substr(phone_number,1,length(phone_number)-4),length(phone_number),'*') 숨겨진전화번호
+from employees
+
+12. 함수를 이용하여 jobs 테이블에서 IT 관련 직종 (직종코드 it 대소문자 구분없이 포함) 의 직종코드와 최대급여를 조회하시오.
+select job_id, max_salary
+from jobs
+where upper(job_id) like '%IT%'
+
+13. 각 사원들의 이름과 상사의 사번을 조회하시오. 만약 상사가 없다면 'BOSS'를 출력하시오.
+manager_id:상사의 사번
+select first_name, nvl(to_char(manager_id),'BOSS')
+from employees
+where manager_id is null;

@@ -1,0 +1,114 @@
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+REGIONS
+TABLE
+
+COUNTRIES
+TABLE
+
+LOCATIONS
+TABLE
+
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+DEPARTMENTS
+TABLE
+
+JOBS
+TABLE
+
+EMPLOYEES
+TABLE
+
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+JOB_HISTORY
+TABLE
+
+EMP_DETAILS_VIEW
+VIEW
+
+SALGRADE
+TABLE
+
+1. TO_CHAR 함수의 포맷에 "dy", "day"를 입력하면 한글로 요일이 리턴된다.
+요일을 한글로 바로 리턴받으면 다른 언어 설정의 데이터베이스는 실행되지 못할 수 있다.
+TO_CHAR 함수의 포맷에 "d"를 입력하면 요일을 정수로 리턴한다.
+요일을 정수로 리턴받아서 문자로 변환하여 조회하시오. 
+ (1:일, 2:월 , 3:화 , 4:수 , 5:목 , 6:금, 7:토)
+select to_char(sysdate,'d')
+from dual;
+
+2. 직종별 평균급여를 조회하되 IT_PROG 직종은 제외하고 평균급여가 많은 직종부터 조회하시오. 단, 평균급여는 정수로 반올림하시오.  JOB_ID 
+직종코드   평균급여
+SA_MAN   XXX
+select JOB_ID 직종코드, round(min_salary+max_salary )/2 평균급여
+from jobs
+where JOB_ID != 'IT_PROG'
+order by round(min_salary+max_salary )/2 desc
+
+select JOB_ID 직종코드,  round(avg(salary)) 평균급여
+from employees
+where JOB_ID != 'IT_PROG'
+group by JOB_ID
+order by  round(avg(salary)) desc
+
+3. 입사년도별 부서별 평균급여 조회하시오. 
+select to_char(HIRE_DATE,'yy'), DEPARTMENT_ID, round(avg(salary))
+from employees
+group by to_char(HIRE_DATE,'yy'), DEPARTMENT_ID
+order by  to_char(HIRE_DATE,'yy'), DEPARTMENT_ID, round(avg(salary)) desc
+
+4. 내이름 내입사일 상사입사일 조회하시오.
+단, 상사가 없는 사원의 경우 상사입사일은 '-' 으로 출력하시오.
+select e.first_name 내이름, e.HIRE_DATE 내입사일,nvl(ee.first_name,'-') 상사이름, nvl(to_char(ee.HIRE_DATE),'-') 상사입사일
+from employees e,employees ee
+where e.manager_id=ee.employee_id (+)
+
+5. employees 테이블에서 직책 정보를 추가하여 출력하려고 한다.
+출력
+사번 급여      직책
+100  24000   임원
+......
+
+급여가 20000 이상이면 직책은 임원
+급여가 15000 이상- 20000 미만이면 직책은 부장
+급여가 10000 이상 - 15000 미만이면 직책은 과장
+나머지 평사원
+으로 처리하시오.
+
+6. employees 테이블에서 급여가 5000 이상인 사원의 직종별 급여 총합 조회하되
+부서별 급여총합  100000 이상인 부서만 포함하시오.
+
+7. employees 테이블에서 직종(JOB_ID)별 사원수를 구하되
+'IT_PROG' 직종은 제외한 나머지 직종에 대해서 구하고
+사원수 2 이하는 제외하고 조회한다.
+단, 조회 순서는 사원수가 많은 직종부터 조회한다.
+
+직종코드  사원수
+CLERK        3
+
+8. 사원명, 부서명 조회하되 해당 부서에 속한 사원이 없는 부서도 조회한다. 
+
+9. 사원들 근무도시를 조회한다. 
+(부서 없는 사원은 근무도시도 없다. 이런 사원 포함 사원도 출력하되 도시명 '없음' 부서명 '없음' 으로 출력한다)
+도시명 부서명 사원명
+
+10. 각 도시에 근무하는 사원수를 조회한다.
+도시명 사원수 
+
+11. EMPLOYEES 테이블에서 입사년도별 급여 총합 조회하되 08 년도 입사자는 제외한다.
+입사년도 급여총합
+     01       XXXX
+     02      XXXX
+
+
+
