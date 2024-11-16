@@ -1,0 +1,66 @@
+쇼핑몰
+1> 회원 가입 정보 저장 테이블을 정의하는 sql을 작성합니다
+member
+아이디:20바이트 문자 : primary key
+암호 : 10자리 문자 : NULL 허용하지 않음
+이름 : 20바이트 문자
+폰번호 : 15자리 문자. 중복 불가
+이메일 : 20자리 문자 '@' 포함필수
+가입일 :  날짜 
+create table member(
+id varchar2(20) constraint mem_id_pk primary key,
+pass varchar2(10) constraint mem_pass_nn not null,
+name varchar2(20),
+pon_num varchar2(15) constraint mem_pon_num_uk unique,
+email varchar2(20) constraint mem_email_ck check(email like '%@%'),
+indate date
+)
+
+2> 아래 5개의 데이터를 member 테이블에 저장하고 저장된 레코드 수를 확인하는 sql 을 작성합니다.
+단, 제약조건 위배한 데이터는 저장되지 않습니다.
+test1	  test1	 홍길동	010-2222-3333	test1@mul.com	오늘날짜
+admin admin	관리자	010-9999-8765	admin@site.com	2024년 9월 30일  
+ezwel	 ezwel	 신박사	011-5678-3456	shin@korea.com	오늘날짜
+multi multi         김나영       011-5678-3456   kim@multi.campus 오늘날짜
+multi2 multi2      김나영       011-3456-5678   multi.campus  오늘날짜
+
+member 가입 회원수 조회하는 sql 작성
+insert into member values('test1','test1','홍길동','010-2222-3333','test1@mul.com',sysdate);
+insert into member values('admin','admin','관리자','010-9999-8765','admin@site.com',to_date('2024년 9월 30일', 'yyyy"년"mm"월"dd"일"'));
+insert into member values('ezwel','ezwel','신박사','011-5678-3456','shin@korea.com',sysdate);
+insert into member values('multi','multi','김나영','011-5678-3456','kim@multi.campus',sysdate);
+insert into member values('multi2','multi2','김나영','011-3456-5678','multi.campus',sysdate);
+
+3> 지금까지의 트랜잭션을 성공적으로 완료하는 sql을 작성합니다
+commit;
+
+4> 상품 정보를 가진 테이블을 정의하는 sql을 작성합니다.
+product
+상품코드:5자리 숫자 :primary key
+상품이름:50바이트 문자:not null
+가격:정수 8자리, 소수점 2자리 표현하는숫자: 
+수량:숫자: 0 이상
+설명: 문자 4000바이트
+
+5> 아래의 데이터를 product 테이블에 저장하는 sql을 작성합니다.
+
+100	이즈웰컴퓨터  1000000	100	성능좋아요
+200	이것은 자바다  30000	50	자바교재
+300	대한키보드     30000	500	인체공학적 설계입니다
+400	한국마우스	     20000	10	광마우스입니다
+
+6> 트랜잭션을 성공적으로 완료하는 sql을 작성합니다.
+===================================================
+7> 오늘 가입한 회원의 모든 정보를 조회합니다.
+
+8> 오늘 가입한 회원들 각각이 한국마우스 1개씩 구입합니다.
+product 테이블에서 한국마우스 수량을 오늘 가입한 회원수만큼 줄이는 sql을 작성합니다.
+
+9> 이즈웰컴퓨터 가격 10% 세일중임을 조회하여 출력하는 sql을 작성합니다.
+
+이즈웰컴퓨터 900000 성능좋아요
+
+10> ezwel 회원이 탈퇴를 원합니다. member 테이블에서 삭제하는 sql을 작성합니다.
+
+
+
