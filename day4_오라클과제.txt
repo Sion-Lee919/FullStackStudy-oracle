@@ -41,6 +41,13 @@ product
 가격:정수 8자리, 소수점 2자리 표현하는숫자: 
 수량:숫자: 0 이상
 설명: 문자 4000바이트
+create table product(
+p_code number(5) constraint p_code_pk primary key,
+p_name varchar(50) constraint p_name_nn not null,
+p_price number (8,2),
+p_quantity number constraint p_quantity check(p_quantity>=0),
+p_ex varchar(4000)
+)
 
 5> 아래의 데이터를 product 테이블에 저장하는 sql을 작성합니다.
 
@@ -48,19 +55,35 @@ product
 200	이것은 자바다  30000	50	자바교재
 300	대한키보드     30000	500	인체공학적 설계입니다
 400	한국마우스	     20000	10	광마우스입니다
+insert into product values(100,'이즈웰컴퓨터',1000000,100,'성능좋아요');
+insert into product values(200,'이것은 자바다',30000,50,'자바교재');
+insert into product values(300,'대한키보드',30000,500,'인체공학적 설계입니다');
+insert into product values(400,'한국마우스',20000,10,'광마우스입니다');
 
 6> 트랜잭션을 성공적으로 완료하는 sql을 작성합니다.
+commit;
+
 ===================================================
+
 7> 오늘 가입한 회원의 모든 정보를 조회합니다.
+select * from member;
 
 8> 오늘 가입한 회원들 각각이 한국마우스 1개씩 구입합니다.
 product 테이블에서 한국마우스 수량을 오늘 가입한 회원수만큼 줄이는 sql을 작성합니다.
+update product 
+set p_quantity = p_quantity -
+(select to_number(count(*)) from member where to_char(indate, 'YY/MM/DD') = '24/11/15')
+where p_name='한국마우스';
 
 9> 이즈웰컴퓨터 가격 10% 세일중임을 조회하여 출력하는 sql을 작성합니다.
 
 이즈웰컴퓨터 900000 성능좋아요
+update product
+set p_price = p_price*0.9 
+where p_name = '이즈웰컴퓨터';
 
 10> ezwel 회원이 탈퇴를 원합니다. member 테이블에서 삭제하는 sql을 작성합니다.
+delete from member where id='ezwel';
 
 
 
