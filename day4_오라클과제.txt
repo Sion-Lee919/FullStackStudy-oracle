@@ -1,12 +1,12 @@
-¼îÇÎ¸ô
-1> È¸¿ø °¡ÀÔ Á¤º¸ ÀúÀå Å×ÀÌºíÀ» Á¤ÀÇÇÏ´Â sqlÀ» ÀÛ¼ºÇÕ´Ï´Ù
+ì‡¼í•‘ëª°
+1> íšŒì› ê°€ìž… ì •ë³´ ì €ìž¥ í…Œì´ë¸”ì„ ì •ì˜í•˜ëŠ” sqlì„ ìž‘ì„±í•©ë‹ˆë‹¤
 member
-¾ÆÀÌµð:20¹ÙÀÌÆ® ¹®ÀÚ : primary key
-¾ÏÈ£ : 10ÀÚ¸® ¹®ÀÚ : NULL Çã¿ëÇÏÁö ¾ÊÀ½
-ÀÌ¸§ : 20¹ÙÀÌÆ® ¹®ÀÚ
-Æù¹øÈ£ : 15ÀÚ¸® ¹®ÀÚ. Áßº¹ ºÒ°¡
-ÀÌ¸ÞÀÏ : 20ÀÚ¸® ¹®ÀÚ '@' Æ÷ÇÔÇÊ¼ö
-°¡ÀÔÀÏ :  ³¯Â¥ 
+ì•„ì´ë””:20ë°”ì´íŠ¸ ë¬¸ìž : primary key
+ì•”í˜¸ : 10ìžë¦¬ ë¬¸ìž : NULL í—ˆìš©í•˜ì§€ ì•ŠìŒ
+ì´ë¦„ : 20ë°”ì´íŠ¸ ë¬¸ìž
+í°ë²ˆí˜¸ : 15ìžë¦¬ ë¬¸ìž. ì¤‘ë³µ ë¶ˆê°€
+ì´ë©”ì¼ : 20ìžë¦¬ ë¬¸ìž '@' í¬í•¨í•„ìˆ˜
+ê°€ìž…ì¼ :  ë‚ ì§œ 
 create table member(
 id varchar2(20) constraint mem_id_pk primary key,
 pass varchar2(10) constraint mem_pass_nn not null,
@@ -16,31 +16,31 @@ email varchar2(20) constraint mem_email_ck check(email like '%@%'),
 indate date
 )
 
-2> ¾Æ·¡ 5°³ÀÇ µ¥ÀÌÅÍ¸¦ member Å×ÀÌºí¿¡ ÀúÀåÇÏ°í ÀúÀåµÈ ·¹ÄÚµå ¼ö¸¦ È®ÀÎÇÏ´Â sql À» ÀÛ¼ºÇÕ´Ï´Ù.
-´Ü, Á¦¾àÁ¶°Ç À§¹èÇÑ µ¥ÀÌÅÍ´Â ÀúÀåµÇÁö ¾Ê½À´Ï´Ù.
-test1	  test1	 È«±æµ¿	010-2222-3333	test1@mul.com	¿À´Ã³¯Â¥
-admin admin	°ü¸®ÀÚ	010-9999-8765	admin@site.com	2024³â 9¿ù 30ÀÏ  
-ezwel	 ezwel	 ½Å¹Ú»ç	011-5678-3456	shin@korea.com	¿À´Ã³¯Â¥
-multi multi         ±è³ª¿µ       011-5678-3456   kim@multi.campus ¿À´Ã³¯Â¥
-multi2 multi2      ±è³ª¿µ       011-3456-5678   multi.campus  ¿À´Ã³¯Â¥
+2> ì•„ëž˜ 5ê°œì˜ ë°ì´í„°ë¥¼ member í…Œì´ë¸”ì— ì €ìž¥í•˜ê³  ì €ìž¥ëœ ë ˆì½”ë“œ ìˆ˜ë¥¼ í™•ì¸í•˜ëŠ” sql ì„ ìž‘ì„±í•©ë‹ˆë‹¤.
+ë‹¨, ì œì•½ì¡°ê±´ ìœ„ë°°í•œ ë°ì´í„°ëŠ” ì €ìž¥ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+test1	  test1	 í™ê¸¸ë™	010-2222-3333	test1@mul.com	ì˜¤ëŠ˜ë‚ ì§œ
+admin admin	ê´€ë¦¬ìž	010-9999-8765	admin@site.com	2024ë…„ 9ì›” 30ì¼  
+ezwel	 ezwel	 ì‹ ë°•ì‚¬	011-5678-3456	shin@korea.com	ì˜¤ëŠ˜ë‚ ì§œ
+multi multi         ê¹€ë‚˜ì˜       011-5678-3456   kim@multi.campus ì˜¤ëŠ˜ë‚ ì§œ
+multi2 multi2      ê¹€ë‚˜ì˜       011-3456-5678   multi.campus  ì˜¤ëŠ˜ë‚ ì§œ
 
-member °¡ÀÔ È¸¿ø¼ö Á¶È¸ÇÏ´Â sql ÀÛ¼º
-insert into member values('test1','test1','È«±æµ¿','010-2222-3333','test1@mul.com',sysdate);
-insert into member values('admin','admin','°ü¸®ÀÚ','010-9999-8765','admin@site.com',to_date('2024³â 9¿ù 30ÀÏ', 'yyyy"³â"mm"¿ù"dd"ÀÏ"'));
-insert into member values('ezwel','ezwel','½Å¹Ú»ç','011-5678-3456','shin@korea.com',sysdate);
-insert into member values('multi','multi','±è³ª¿µ','011-5678-3456','kim@multi.campus',sysdate);
-insert into member values('multi2','multi2','±è³ª¿µ','011-3456-5678','multi.campus',sysdate);
+member ê°€ìž… íšŒì›ìˆ˜ ì¡°íšŒí•˜ëŠ” sql ìž‘ì„±
+insert into member values('test1','test1','í™ê¸¸ë™','010-2222-3333','test1@mul.com',sysdate);
+insert into member values('admin','admin','ê´€ë¦¬ìž','010-9999-8765','admin@site.com',to_date('2024ë…„ 9ì›” 30ì¼', 'yyyy"ë…„"mm"ì›”"dd"ì¼"'));
+insert into member values('ezwel','ezwel','ì‹ ë°•ì‚¬','011-5678-3456','shin@korea.com',sysdate);
+insert into member values('multi','multi','ê¹€ë‚˜ì˜','011-5678-3456','kim@multi.campus',sysdate);
+insert into member values('multi2','multi2','ê¹€ë‚˜ì˜','011-3456-5678','multi.campus',sysdate);
 
-3> Áö±Ý±îÁöÀÇ Æ®·£Àè¼ÇÀ» ¼º°øÀûÀ¸·Î ¿Ï·áÇÏ´Â sqlÀ» ÀÛ¼ºÇÕ´Ï´Ù
+3> ì§€ê¸ˆê¹Œì§€ì˜ íŠ¸ëžœìž­ì…˜ì„ ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œí•˜ëŠ” sqlì„ ìž‘ì„±í•©ë‹ˆë‹¤
 commit;
 
-4> »óÇ° Á¤º¸¸¦ °¡Áø Å×ÀÌºíÀ» Á¤ÀÇÇÏ´Â sqlÀ» ÀÛ¼ºÇÕ´Ï´Ù.
+4> ìƒí’ˆ ì •ë³´ë¥¼ ê°€ì§„ í…Œì´ë¸”ì„ ì •ì˜í•˜ëŠ” sqlì„ ìž‘ì„±í•©ë‹ˆë‹¤.
 product
-»óÇ°ÄÚµå:5ÀÚ¸® ¼ýÀÚ :primary key
-»óÇ°ÀÌ¸§:50¹ÙÀÌÆ® ¹®ÀÚ:not null
-°¡°Ý:Á¤¼ö 8ÀÚ¸®, ¼Ò¼öÁ¡ 2ÀÚ¸® Ç¥ÇöÇÏ´Â¼ýÀÚ: 
-¼ö·®:¼ýÀÚ: 0 ÀÌ»ó
-¼³¸í: ¹®ÀÚ 4000¹ÙÀÌÆ®
+ìƒí’ˆì½”ë“œ:5ìžë¦¬ ìˆ«ìž :primary key
+ìƒí’ˆì´ë¦„:50ë°”ì´íŠ¸ ë¬¸ìž:not null
+ê°€ê²©:ì •ìˆ˜ 8ìžë¦¬, ì†Œìˆ˜ì  2ìžë¦¬ í‘œí˜„í•˜ëŠ”ìˆ«ìž: 
+ìˆ˜ëŸ‰:ìˆ«ìž: 0 ì´ìƒ
+ì„¤ëª…: ë¬¸ìž 4000ë°”ì´íŠ¸
 create table product(
 p_code number(5) constraint p_code_pk primary key,
 p_name varchar(50) constraint p_name_nn not null,
@@ -49,40 +49,40 @@ p_quantity number constraint p_quantity check(p_quantity>=0),
 p_ex varchar(4000)
 )
 
-5> ¾Æ·¡ÀÇ µ¥ÀÌÅÍ¸¦ product Å×ÀÌºí¿¡ ÀúÀåÇÏ´Â sqlÀ» ÀÛ¼ºÇÕ´Ï´Ù.
+5> ì•„ëž˜ì˜ ë°ì´í„°ë¥¼ product í…Œì´ë¸”ì— ì €ìž¥í•˜ëŠ” sqlì„ ìž‘ì„±í•©ë‹ˆë‹¤.
 
-100	ÀÌÁîÀ£ÄÄÇ»ÅÍ  1000000	100	¼º´ÉÁÁ¾Æ¿ä
-200	ÀÌ°ÍÀº ÀÚ¹Ù´Ù  30000	50	ÀÚ¹Ù±³Àç
-300	´ëÇÑÅ°º¸µå     30000	500	ÀÎÃ¼°øÇÐÀû ¼³°èÀÔ´Ï´Ù
-400	ÇÑ±¹¸¶¿ì½º	     20000	10	±¤¸¶¿ì½ºÀÔ´Ï´Ù
-insert into product values(100,'ÀÌÁîÀ£ÄÄÇ»ÅÍ',1000000,100,'¼º´ÉÁÁ¾Æ¿ä');
-insert into product values(200,'ÀÌ°ÍÀº ÀÚ¹Ù´Ù',30000,50,'ÀÚ¹Ù±³Àç');
-insert into product values(300,'´ëÇÑÅ°º¸µå',30000,500,'ÀÎÃ¼°øÇÐÀû ¼³°èÀÔ´Ï´Ù');
-insert into product values(400,'ÇÑ±¹¸¶¿ì½º',20000,10,'±¤¸¶¿ì½ºÀÔ´Ï´Ù');
+100	ì´ì¦ˆì›°ì»´í“¨í„°  1000000	100	ì„±ëŠ¥ì¢‹ì•„ìš”
+200	ì´ê²ƒì€ ìžë°”ë‹¤  30000	50	ìžë°”êµìž¬
+300	ëŒ€í•œí‚¤ë³´ë“œ     30000	500	ì¸ì²´ê³µí•™ì  ì„¤ê³„ìž…ë‹ˆë‹¤
+400	í•œêµ­ë§ˆìš°ìŠ¤	     20000	10	ê´‘ë§ˆìš°ìŠ¤ìž…ë‹ˆë‹¤
+insert into product values(100,'ì´ì¦ˆì›°ì»´í“¨í„°',1000000,100,'ì„±ëŠ¥ì¢‹ì•„ìš”');
+insert into product values(200,'ì´ê²ƒì€ ìžë°”ë‹¤',30000,50,'ìžë°”êµìž¬');
+insert into product values(300,'ëŒ€í•œí‚¤ë³´ë“œ',30000,500,'ì¸ì²´ê³µí•™ì  ì„¤ê³„ìž…ë‹ˆë‹¤');
+insert into product values(400,'í•œêµ­ë§ˆìš°ìŠ¤',20000,10,'ê´‘ë§ˆìš°ìŠ¤ìž…ë‹ˆë‹¤');
 
-6> Æ®·£Àè¼ÇÀ» ¼º°øÀûÀ¸·Î ¿Ï·áÇÏ´Â sqlÀ» ÀÛ¼ºÇÕ´Ï´Ù.
+6> íŠ¸ëžœìž­ì…˜ì„ ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œí•˜ëŠ” sqlì„ ìž‘ì„±í•©ë‹ˆë‹¤.
 commit;
 
 ===================================================
 
-7> ¿À´Ã °¡ÀÔÇÑ È¸¿øÀÇ ¸ðµç Á¤º¸¸¦ Á¶È¸ÇÕ´Ï´Ù.
+7> ì˜¤ëŠ˜ ê°€ìž…í•œ íšŒì›ì˜ ëª¨ë“  ì •ë³´ë¥¼ ì¡°íšŒí•©ë‹ˆë‹¤.
 select * from member;
 
-8> ¿À´Ã °¡ÀÔÇÑ È¸¿øµé °¢°¢ÀÌ ÇÑ±¹¸¶¿ì½º 1°³¾¿ ±¸ÀÔÇÕ´Ï´Ù.
-product Å×ÀÌºí¿¡¼­ ÇÑ±¹¸¶¿ì½º ¼ö·®À» ¿À´Ã °¡ÀÔÇÑ È¸¿ø¼ö¸¸Å­ ÁÙÀÌ´Â sqlÀ» ÀÛ¼ºÇÕ´Ï´Ù.
+8> ì˜¤ëŠ˜ ê°€ìž…í•œ íšŒì›ë“¤ ê°ê°ì´ í•œêµ­ë§ˆìš°ìŠ¤ 1ê°œì”© êµ¬ìž…í•©ë‹ˆë‹¤.
+product í…Œì´ë¸”ì—ì„œ í•œêµ­ë§ˆìš°ìŠ¤ ìˆ˜ëŸ‰ì„ ì˜¤ëŠ˜ ê°€ìž…í•œ íšŒì›ìˆ˜ë§Œí¼ ì¤„ì´ëŠ” sqlì„ ìž‘ì„±í•©ë‹ˆë‹¤.
 update product 
 set p_quantity = p_quantity -
 (select to_number(count(*)) from member where to_char(indate, 'YY/MM/DD') = '24/11/15')
-where p_name='ÇÑ±¹¸¶¿ì½º';
+where p_name='í•œêµ­ë§ˆìš°ìŠ¤';
 
-9> ÀÌÁîÀ£ÄÄÇ»ÅÍ °¡°Ý 10% ¼¼ÀÏÁßÀÓÀ» Á¶È¸ÇÏ¿© Ãâ·ÂÇÏ´Â sqlÀ» ÀÛ¼ºÇÕ´Ï´Ù.
+9> ì´ì¦ˆì›°ì»´í“¨í„° ê°€ê²© 10% ì„¸ì¼ì¤‘ìž„ì„ ì¡°íšŒí•˜ì—¬ ì¶œë ¥í•˜ëŠ” sqlì„ ìž‘ì„±í•©ë‹ˆë‹¤.
 
-ÀÌÁîÀ£ÄÄÇ»ÅÍ 900000 ¼º´ÉÁÁ¾Æ¿ä
+ì´ì¦ˆì›°ì»´í“¨í„° 900000 ì„±ëŠ¥ì¢‹ì•„ìš”
 update product
 set p_price = p_price*0.9 
-where p_name = 'ÀÌÁîÀ£ÄÄÇ»ÅÍ';
+where p_name = 'ì´ì¦ˆì›°ì»´í“¨í„°';
 
-10> ezwel È¸¿øÀÌ Å»Åð¸¦ ¿øÇÕ´Ï´Ù. member Å×ÀÌºí¿¡¼­ »èÁ¦ÇÏ´Â sqlÀ» ÀÛ¼ºÇÕ´Ï´Ù.
+10> ezwel íšŒì›ì´ íƒˆí‡´ë¥¼ ì›í•©ë‹ˆë‹¤. member í…Œì´ë¸”ì—ì„œ ì‚­ì œí•˜ëŠ” sqlì„ ìž‘ì„±í•©ë‹ˆë‹¤.
 delete from member where id='ezwel';
 
 
