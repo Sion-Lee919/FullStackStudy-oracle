@@ -2,7 +2,12 @@ package main;
 
 import java.util.Scanner;
 
+import view.MemberDeleteView;
 import view.MemberInsertView;
+import view.MemberSelectListView;
+import view.MemberSelectSearchListView;
+import view.MemberSelectView;
+import view.MemberUpdateView;
 import view.View;
 
 public class MemberMain {
@@ -29,8 +34,28 @@ public class MemberMain {
 			System.out.println("회원가입을 선택하셨습니다");
 			//가입정보 키보드 입력 -> MemberDTO -> MemberDAO:insertMenber(MemberDTO)->저장
 			view = new MemberInsertView();
-			view.input();
 		}
+		else if(menunumber == 2) {
+			System.out.println("회원 정보 수정을 선택하셨습니다");
+			view = new MemberUpdateView();
+		}
+		else if(menunumber == 3) {
+			System.out.println("회원 탈퇴를 선택하셨습니다");
+			view = new MemberDeleteView();
+		}
+		else if(menunumber == 4) {
+			System.out.println("내 정보 조회를 선택하셨습니다.");
+			view = new MemberSelectView();
+		}
+		else if(menunumber == 5) {
+			System.out.println("회원 리스트 조회를 선택하셨습니다.");
+			view = new MemberSelectListView();
+		}
+		else if(menunumber == 6) {
+			System.out.println("조건 조회를 선택하셨습니다.");
+			view = new MemberSelectSearchListView();
+		}
+		view.input();
 	}
 }
 

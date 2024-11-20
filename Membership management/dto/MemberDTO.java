@@ -42,12 +42,10 @@ public class MemberDTO {
 	}
 	@Override
 	public String toString() {
-		return "MemberDTO [id=" + id + ", name=" + name + ", pw=" + pw + ", phone=" + phone + ", email=" + email
-				+ ", regdate=" + regdate + "]";
+		return id + "회원님의 정보는 다음과 같습니다."+" 이름 : " + name + ", 암호 : " + pw + ", 핸드폰번호 : " + phone + ", 이메일 : " + email
+				+ ", 가입일 : " + regdate+"\n";
 	}
-
 	
 	
-	//생성자추가정의
-	//toString 메소드 필요시
+	
 }
